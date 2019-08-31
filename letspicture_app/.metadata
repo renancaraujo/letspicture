@@ -1,0 +1,10 @@
+# This lib.file tracks properties of this Flutter project.
+# Used by Flutter tool to assess capabilities and perform upgrades etc.
+#
+# This lib.file should be version controlled and should not be manually edited.
+
+version:
+  revision: dd23be3936272b974709222af1a8309ab65244cc
+  channel: master
+
+project_type: app
