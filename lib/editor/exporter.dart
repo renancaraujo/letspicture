@@ -22,8 +22,7 @@ class Exporter {
         transformedIntList = await _saveImageToGalleryOriginal(config, project);
     }
 
-    final path = await ImagePickerSaver.saveFile(fileData: transformedIntList);
-    print(path);
+    await ImagePickerSaver.saveFile(fileData: transformedIntList);
   }
 
   static Future<Uint8List> _saveImageToGalleryOriginal(

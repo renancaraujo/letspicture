@@ -41,9 +41,6 @@ class _ImageWrapperState extends State<ImageWrapper>
   AnimationController _scaleAnimationController;
   Animation<double> _scaleAnimation;
 
-  PhotoView photoView;
-  ScaleBoundaries scaleBoundaries;
-
   bool get focusedMode => widget.screenMode == StudioScreenMode.focusedMode;
 
   void handleVerticalPositionAnimate() {
@@ -63,8 +60,7 @@ class _ImageWrapperState extends State<ImageWrapper>
   }
 
   TickerFuture animateScale(double to) {
-    final double from =
-        _photoViewController.scale ?? scaleBoundaries.initialScale;
+    final double from = _photoViewController.scale;
     _scaleAnimation = Tween(
       begin: from,
       end: to,
@@ -153,10 +149,6 @@ class _ImageWrapperState extends State<ImageWrapper>
     super.dispose();
   }
 
-  void onLayout(ScaleBoundaries boundaries) {
-    scaleBoundaries = boundaries;
-  }
-
   double get scale {
     if (widget.screenMode == StudioScreenMode.exporting) {
       return 0.85; // todo: constant
@@ -183,7 +175,6 @@ class _ImageWrapperState extends State<ImageWrapper>
             ..scale(scale),
           height: height,
           child: PhotoView.customChild(
-            onLayout: onLayout,
             customSize: Size(constraints.maxWidth, height),
             initialScale: PhotoViewComputedScale.contained,
             controller: _photoViewController,

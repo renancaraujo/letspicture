@@ -35,7 +35,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.2.0"
   bitmap:
     dependency: "direct main"
     description:
@@ -49,7 +49,7 @@ packages:
       name: boolean_selector
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.4"
   build:
     dependency: transitive
     description:
@@ -318,7 +318,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.7"
+    version: "1.1.6"
   mime:
     dependency: transitive
     description:
@@ -388,7 +388,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0+1"
+    version: "1.7.0"
   petitparser:
     dependency: transitive
     description:
@@ -399,12 +399,10 @@ packages:
   photo_view:
     dependency: "direct main"
     description:
-      path: "."
-      ref: letspicture_compat
-      resolved-ref: f9e713436cc1baa8dcd4fe1299e8f5e014222644
-      url: "git://github.com/renancaraujo/photo_view.git"
-    source: git
-    version: "0.4.2"
+      name: photo_view
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0"
   pool:
     dependency: transitive
     description:

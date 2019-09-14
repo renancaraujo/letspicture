@@ -5,7 +5,7 @@ class ContrastSubjectManager extends ItemSubjectManager<double, double> {
   double convertToIn(double outValue) {
     assert(outValue >= 0.0);
     if (outValue > 1.0) {
-      return (outValue - 1) * 3;
+      return (outValue - 1) / 1.1;
     } else if (outValue < 1.0) {
       return (outValue - 1) / 0.2;
     }
@@ -15,9 +15,8 @@ class ContrastSubjectManager extends ItemSubjectManager<double, double> {
   @override
   double convertToOut(double inValue) {
     assert(inValue <= 1.0 && inValue >= -1.0);
-
     if (inValue > 0.0) {
-      return inValue / 3 + 1;
+      return inValue * 1.1 + 1;
     } else if (inValue < 0.0) {
       return 1 + (inValue * 0.2);
     }

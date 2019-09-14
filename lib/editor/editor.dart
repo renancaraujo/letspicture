@@ -89,7 +89,6 @@ class Editor {
   bool get isMounted => skin != null;
 
   Future<void> mountNiks(ProjectObservable projectObservable) async {
-
     this.projectObservable = projectObservable;
     final Project project = projectObservable.value;
     await FileUtils.instance.openProjectEditionBitmapFile(project);

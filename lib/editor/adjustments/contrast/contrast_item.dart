@@ -45,7 +45,6 @@ class _ContrastItemEditorState extends State<ContrastItemEditor> {
   }
 
   void onData(double event) {
-    print(event);
     filter.contrastRate = event;
   }
 
@@ -59,10 +58,11 @@ class _ContrastItemEditorState extends State<ContrastItemEditor> {
       stream: subjectManager.subject,
       builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
         return Slider(
-            value: subjectManager.value ?? 0.0,
-            min: -1.0,
-            max: 1.0,
-            onChanged: onChanged);
+          value: subjectManager.value ?? 0.0,
+          min: -1.0,
+          max: 1.0,
+          onChanged: onChanged,
+        );
       },
     );
   }

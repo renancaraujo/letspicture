@@ -145,7 +145,6 @@ class _MenuBackdropState extends State<MenuBackdrop>
 
   @override
   Widget build(BuildContext context) {
-    print(widget.isReady);
     return IgnorePointer(
         child: AnimatedOpacity(
       opacity: widget.isReady ? 1.0 : 0.0,
