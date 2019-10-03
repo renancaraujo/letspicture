@@ -3,6 +3,7 @@ import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:bitmap/bitmap.dart';
+import 'package:bitmap/transformations.dart' as bmp_transform;
 import 'package:letspicture/config/config.dart' as config;
 
 class IsolateWorker {
@@ -45,7 +46,7 @@ void imageParseIsolate(List initialMessage) async {
     final int width = msg[0][1];
     final int height = msg[0][2];
 
-    final Bitmap bigBitmap = Bitmap(width, height, intList);
+    final Bitmap bigBitmap = Bitmap.fromHeadless(width, height, intList);
 
     const previewMinWidth = config.previewMinWidth;
     const previewMinHeight = config.previewMinHeight;
@@ -53,7 +54,7 @@ void imageParseIsolate(List initialMessage) async {
     Bitmap smallBitmap;
 
     if (width < previewMinWidth) {
-      smallBitmap = bigBitmap.copy();
+      smallBitmap = bigBitmap.cloneHeadless();
     } else {
       int resizeWidth = previewMinWidth;
       int resizeHeight;
@@ -69,15 +70,17 @@ void imageParseIsolate(List initialMessage) async {
       }
 
       if (resizeWidth == null) {
-        smallBitmap = await bigBitmap.resizeHeight(resizeHeight.toInt());
+        smallBitmap =
+            await bmp_transform.resizeHeight(bigBitmap, resizeHeight.toInt());
       } else {
-        smallBitmap = await bigBitmap.resizeWidth(resizeWidth.toInt());
+        smallBitmap =
+            await bmp_transform.resizeWidth(bigBitmap, resizeWidth.toInt());
       }
     }
 
-    final Uint8List bigFile = bigBitmap.contentByteData;
-    final Uint8List smallFile = smallBitmap.contentByteData;
-    final Uint8List previewFile = BitmapFile(smallBitmap).bitmapWithHeader;
+    final Uint8List bigFile = bigBitmap.content;
+    final Uint8List smallFile = smallBitmap.content;
+    final Uint8List previewFile = smallBitmap.buildHeaded();
 
     final thumbWidth = smallBitmap.width;
     final thumbHeight = smallBitmap.height;

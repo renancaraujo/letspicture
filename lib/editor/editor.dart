@@ -1,26 +1,3 @@
-/*
-
-Editor editor = Editor();
-
-await editor.mountNiks(project);
-
-editor unmoint niks
-
-editor.niks;
-
-editor.setContrast(0.1);
-
-
-
-await editor.saveFile(SaveFileConfig.original);
-
-NiksRenderWidget()
-
-
-strem changes to project file json ();
-
- */
-
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:bitmap/bitmap.dart';
@@ -105,7 +82,7 @@ class Editor {
     brightnessFilter = imageLayer.filters[brightnessFilterID];
     adjustColorFilter = imageLayer.filters[adjustColorFilterID];
 
-    imageLayer.bitmap = Bitmap(
+    imageLayer.bitmap = Bitmap.fromHeadless(
       project.thumbnailSize.width.toInt(),
       project.thumbnailSize.height.toInt(),
       project.editionBitmapFile.fileData,
@@ -140,7 +117,7 @@ class Editor {
     final skin = Niks.blank(NiksOptions(width: width, height: height));
     skin.installLayer(BitmapLayerInstallation());
     final imageLayer = BitmapLayer.fromLTWH(
-      Bitmap(
+      Bitmap.fromHeadless(
         width.toInt(),
         height.toInt(),
         uInt8list,

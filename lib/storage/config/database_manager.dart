@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:letspicture/storage/project/project_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -19,7 +18,7 @@ class DatabaseManager {
   Database db;
 
   Future init() async {
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 500));
     final String databasesPath = await getDatabasesPath();
     final String path = join(databasesPath, '$dbname.db');
     db = await openDatabase(path, version: version, onCreate: _onCreate);

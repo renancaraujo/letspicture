@@ -31,24 +31,26 @@ class StudioTopMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned.fill(
-        child: AnimatedOpacity(
-      duration: const Duration(milliseconds: 350),
-      opacity: opacity,
-      child: Stack(
-        children: <Widget>[
-          MenuBackdrop(
-            screenMode: screenMode,
-            updateScreenMode: updateScreenMode,
-          ),
-          TopMenuItems(
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 350),
+        opacity: opacity,
+        child: Stack(
+          children: <Widget>[
+            MenuBackdrop(
+              screenMode: screenMode,
+              updateScreenMode: updateScreenMode,
+            ),
+            TopMenuItems(
               screenMode: screenMode,
               updateScreenMode: updateScreenMode,
               isReady: isReady,
               project: project,
-              showing: showing)
-        ],
+              showing: showing,
+            )
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
 
@@ -62,27 +64,29 @@ class MenuBackdrop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-        child: Container(
-      child: CustomPaint(
-        painter: MenuGradientPainter(
+      child: Container(
+        child: CustomPaint(
+          painter: MenuGradientPainter(
             fadeLength: 200,
             radiusMultiplier: 1.0 + 10 / MediaQuery.of(context).size.height,
-            center: const Alignment(0.0, 1.05)),
-        child: Container(),
+            center: const Alignment(0.0, 1.05),
+          ),
+          child: Container(),
+        ),
       ),
-    ));
+    );
   }
 }
 
 class TopMenuItems extends StatelessWidget {
-  const TopMenuItems(
-      {Key key,
-      this.isReady,
-      this.screenMode,
-      this.updateScreenMode,
-      this.project,
-      this.showing})
-      : super(key: key);
+  const TopMenuItems({
+    Key key,
+    this.isReady,
+    this.screenMode,
+    this.updateScreenMode,
+    this.project,
+    this.showing,
+  }) : super(key: key);
   final StudioScreenMode screenMode;
   final ValueChanged<StudioScreenMode> updateScreenMode;
   final bool isReady;
@@ -100,50 +104,56 @@ class TopMenuItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        top: 0.0,
-        left: 0.0,
-        right: 0.0,
-        child: IgnorePointer(
-            ignoring: !showing,
-            child: SafeArea(
-                child: Container(
-                    height: 75,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        FlatButton(
-                            onPressed: () {
-                              if (screenMode == StudioScreenMode.exporting) {
-                                return updateScreenMode(
-                                    StudioScreenMode.normal);
-                              }
-                              Application.instance.router.pop(context);
-                            },
-                            child: Row(
-                              children: <Widget>[
-                                Icon(Icons.chevron_left),
-                                Text(
-                                  "Back",
-                                  style: TextStyle(fontSize: 18),
-                                )
-                              ],
-                            )),
-                        _buildExporButton(context),
-                      ],
-                    )))));
+      top: 0.0,
+      left: 0.0,
+      right: 0.0,
+      child: IgnorePointer(
+        ignoring: !showing,
+        child: SafeArea(
+          child: Container(
+            height: 75,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    if (screenMode == StudioScreenMode.exporting) {
+                      return updateScreenMode(StudioScreenMode.normal);
+                    }
+                    Application.instance.router.pop(context);
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      Icon(Icons.chevron_left),
+                      const Text(
+                        "Back",
+                        style: TextStyle(fontSize: 18),
+                      )
+                    ],
+                  ),
+                ),
+                _buildExporButton(context),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildExporButton(BuildContext context) {
     return WillPopScope(
-        onWillPop: onWillPop,
-        child: FlatButton(
-            onPressed: () {
-              updateScreenMode(StudioScreenMode.exporting);
-            },
-            padding: const EdgeInsets.only(right: 10),
-            child: Text(
-              "Export",
-              style: TextStyle(fontSize: 18),
-            )));
+      onWillPop: onWillPop,
+      child: FlatButton(
+        onPressed: () {
+          updateScreenMode(StudioScreenMode.exporting);
+        },
+        padding: const EdgeInsets.only(right: 10),
+        child: const Text(
+          "Export",
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
+    );
   }
 }

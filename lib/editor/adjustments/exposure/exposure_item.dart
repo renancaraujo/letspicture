@@ -62,10 +62,11 @@ class _ExposureItemEditorState extends State<ExposureItemEditor> {
       stream: subjectManager.subject,
       builder: (BuildContext context, AsyncSnapshot<double> snapshot) {
         return Slider(
-            value: subjectManager.value ?? 0.0,
-            min: -1.0,
-            max: 2.5,
-            onChanged: onChanged);
+          value: subjectManager.value ?? 0.0,
+          min: -1.0,
+          max: 2.5,
+          onChanged: onChanged,
+        );
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:bitmap/bitmap.dart';
 import 'package:flutter/painting.dart';
@@ -116,9 +117,9 @@ class ProjectsManager {
     // update thumbnail
     final thumbnailBitmap = await imageLayer.resolvedImage.toByteData();
     final a = thumbnailBitmap.buffer.asUint8List();
-    final BitmapFile file = BitmapFile(Bitmap(width, height, a));
-    final ProjectThumbnailFile newFile =
-        ProjectThumbnailFile(file.bitmapWithHeader);
+    final Uint8List fileContent =
+        Bitmap.fromHeadless(width, height, a).buildHeaded();
+    final ProjectThumbnailFile newFile = ProjectThumbnailFile(fileContent);
     FileUtils.instance.saveProjectThumbnail(project, newFile);
 
     return newFile;
