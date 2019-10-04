@@ -42,7 +42,7 @@ packages:
       name: bitmap
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.4-next2"
+    version: "0.0.4-next3"
   boolean_selector:
     dependency: transitive
     description:
@@ -187,7 +187,7 @@ packages:
       name: flutter_launcher_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.2+1"
+    version: "0.7.3"
   flutter_mobx:
     dependency: "direct main"
     description:
@@ -353,7 +353,7 @@ packages:
       name: niks_bitmap
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.2-next"
+    version: "0.0.2-next3"
   package_config:
     dependency: transitive
     description:
