@@ -7,8 +7,10 @@ import 'contrast_subject.dart';
 
 class ContrastMenuItem extends AdjustmentsMenuItem {
   ContrastMenuItem()
-      : super("Contrast",
-            Image.asset("assets/icons/editor/contrast.png", width: iconWidth));
+      : super(
+          "Contrast",
+          Image.asset("assets/icons/editor/contrast.png", width: iconWidth),
+        );
 
   @override
   Widget itemBuilder(BuildContext context) {

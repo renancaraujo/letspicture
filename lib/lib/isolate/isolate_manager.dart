@@ -23,6 +23,7 @@ class IsolateWorker {
 
   void kill() {
     _isolate.kill();
+    _receivePort.close();
   }
 
   Future postMessage(message) async {

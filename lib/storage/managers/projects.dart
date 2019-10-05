@@ -56,11 +56,7 @@ class ProjectsManager {
       final thumbHeight = imageFiles[4] as int;
 
       final skin = Editor.createEmptyNiksProject(imageSize);
-      final ProjectNiksFile niksFile =
-          ProjectNiksFile.fromMap(skin.dehydrate());
-
-      // turn loading off
-      loadingObservable.updateLoadingInsertProject(false);
+      final ProjectNiksFile niksFile = ProjectNiksFile.fromMap(skin);
 
       // add preview to memory
       newProject.thumbnailFile = thumbnailFile;
@@ -88,6 +84,9 @@ class ProjectsManager {
 
       // add to in memory observable
       projectCollectionObservable.insertProject(newProject);
+
+      // turn loading off
+      loadingObservable.updateLoadingInsertProject(false);
     } catch (e) {
       loadingObservable.updateLoadingInsertProject(false);
     }

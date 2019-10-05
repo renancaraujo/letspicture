@@ -146,19 +146,24 @@ class _MenuBackdropState extends State<MenuBackdrop>
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-        child: AnimatedOpacity(
-      opacity: widget.isReady ? 1.0 : 0.0,
-      duration: const Duration(milliseconds: 350),
-      child: Container(
-        child: CustomPaint(
-          painter: MenuGradientPainter(
+      child: AnimatedOpacity(
+        opacity: widget.isReady ? 1.0 : 0.0,
+        duration: const Duration(milliseconds: 350),
+        child: Container(
+          child: CustomPaint(
+            painter: MenuGradientPainter(
               fadeLength: fadeLength,
               radiusMultiplier: radius,
-              center: Alignment(0.0, -(1.0 * center))),
-          child: Container(),
+              center: Alignment(
+                0.0,
+                -(1.0 * center),
+              ),
+            ),
+            child: Container(),
+          ),
         ),
       ),
-    ));
+    );
   }
 }
 

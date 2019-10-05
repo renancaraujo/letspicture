@@ -1,5 +1,5 @@
-const int previewMinWidth = 500;
-const int previewMinHeight = 500;
+const int previewMinWidth = 800;
+const int previewMinHeight = 1000;
 const int miniLongestSide = 400;
 const String originalBitmapSuffix = "image";
 const String thumbnailSuffix = "thumbnail";

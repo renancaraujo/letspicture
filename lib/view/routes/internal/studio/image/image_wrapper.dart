@@ -140,10 +140,11 @@ class _ImageWrapperState extends State<ImageWrapper>
 
   @override
   void dispose() {
-    _photoViewController.dispose();
     _verticalPositionAnimationController.dispose();
     _horizontalPositionAnimationController.dispose();
     _scaleAnimationController.dispose();
+
+    _photoViewController.dispose();
     _photoViewScaleStateController.dispose();
 
     super.dispose();
@@ -190,14 +191,15 @@ class _ImageWrapperState extends State<ImageWrapper>
 
   Widget _buildPhotoInnerView(BuildContext context) {
     return Hero(
-        tag: widget.project.id,
-        child: widget.isReady
-            ? InnerNiks(
-                project: widget.project,
-              )
-            : InnerLoading(
-                project: widget.project,
-              ));
+      tag: widget.project.id,
+      child: widget.isReady
+          ? InnerNiks(
+              project: widget.project,
+            )
+          : InnerLoading(
+              project: widget.project,
+            ),
+    );
   }
 }
 

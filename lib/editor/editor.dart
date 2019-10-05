@@ -25,7 +25,7 @@ class Editor {
     return _instance;
   }
 
-  static Niks createEmptyNiksProject(Size imageSize) {
+  static Map<String, dynamic> createEmptyNiksProject(Size imageSize) {
     final width = imageSize.width;
     final height = imageSize.height;
 
@@ -33,8 +33,8 @@ class Editor {
     skin.installLayer(BitmapLayerInstallation());
     final BitmapLayer imageLayer = BitmapLayer.fromLTWH(
       Bitmap.blank(
-        width.toInt(),
-        height.toInt(),
+        1,
+        1,
       ),
       0,
       0,
@@ -52,8 +52,11 @@ class Editor {
 
     final AdjustColorFilter adjustColorFilter = AdjustColorFilter();
     imageLayer.addFilter(adjustColorFilterID, adjustColorFilter);
+    final dehydratedSkin = skin.dehydrate();
 
-    return skin;
+    skin.dispose();
+
+    return dehydratedSkin;
   }
 
   Niks skin;

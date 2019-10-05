@@ -86,8 +86,7 @@ class OptionEditor extends StatelessWidget {
 abstract class ItemSubjectManager<InType, OutType> {
   ItemSubjectManager() : subject = BehaviorSubject<InType>() {
     outcomes = subject
-        .throttle((_) => TimerStream(true, const Duration(milliseconds: 60)),
-            trailing: true)
+        .throttleTime(const Duration(milliseconds: 100), trailing: true)
         .map<OutType>(convertToOut);
     subject.listen((InType newValue) => value = newValue);
   }
