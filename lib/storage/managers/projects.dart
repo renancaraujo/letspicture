@@ -44,7 +44,6 @@ class ProjectsManager {
       // parse bitmap and create files
       final List<dynamic> imageFiles =
           await createProjectImageFilesFromImageInfo(imageInfo, imageSize);
-
       final ProjectOriginalBitmapFile originalBitmapFile =
           imageFiles[0] as ProjectOriginalBitmapFile;
       final ProjectEditionBitmapFile editionFile =

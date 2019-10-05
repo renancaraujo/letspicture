@@ -108,7 +108,9 @@ class FileUtils {
 }
 
 Future<List<dynamic>> createProjectImageFilesFromImageInfo(
-    ImageInfo imageInfo, Size imageSize) async {
+  ImageInfo imageInfo,
+  Size imageSize,
+) async {
   // get byteData from imageInfo
   final ByteData byteData = await imageInfo.image.toByteData();
 

@@ -32,10 +32,7 @@ class Editor {
     final Niks skin = Niks.blank(NiksOptions(width: width, height: height));
     skin.installLayer(BitmapLayerInstallation());
     final BitmapLayer imageLayer = BitmapLayer.fromLTWH(
-      Bitmap.blank(
-        1,
-        1,
-      ),
+      Bitmap.blank(1, 1),
       0,
       0,
       width,

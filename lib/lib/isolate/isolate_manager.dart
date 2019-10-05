@@ -30,6 +30,7 @@ class IsolateWorker {
     final ReceivePort responsePort = ReceivePort();
     _sendPortToIsolate.send([message, responsePort.sendPort]);
     final response = await responsePort.first;
+    responsePort.close();
     return response;
   }
 }
@@ -87,5 +88,6 @@ void imageParseIsolate(List initialMessage) async {
     final thumbHeight = smallBitmap.height;
 
     replyTo.send([bigFile, smallFile, previewFile, thumbWidth, thumbHeight]);
+    port.close();
   }
 }
