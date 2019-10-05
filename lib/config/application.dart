@@ -29,13 +29,19 @@ class Application {
 
   final Router router;
   final ThemeData themeData = ThemeData(
-      brightness: Brightness.dark,
-      accentColor: const Color(0xFFE94227),
-      canvasColor: const Color(0xFF080808),
-      appBarTheme: const AppBarTheme(color: Color(0xFF080808)),
-      textTheme: TextTheme(
-          body1: TextStyle(fontSize: 20, fontWeight: FontWeight.w200)),
-      fontFamily: "Exo");
+    brightness: Brightness.dark,
+    accentColor: const Color(0xFFE94227),
+    canvasColor: const Color(0xFF080808),
+    appBarTheme: const AppBarTheme(
+      color: Color(0xFF080808),
+    ),
+    textTheme: TextTheme(
+        body1: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w200,
+    )),
+    fontFamily: "Exo",
+  );
   Future<void> setupFuture;
 
   Future<void> _prepareKicksStartConfig() async {

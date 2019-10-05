@@ -5,6 +5,9 @@ import 'view/root_widget.dart';
 
 Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  runApp(RootWidget(application: Application.instance));
+    SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
+  runApp(
+    RootWidget(application: Application.instance),
+  );
 }

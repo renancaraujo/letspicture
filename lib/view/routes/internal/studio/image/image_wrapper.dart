@@ -64,9 +64,12 @@ class _ImageWrapperState extends State<ImageWrapper>
     _scaleAnimation = Tween(
       begin: from,
       end: to,
-    ).animate(CurvedAnimation(
+    ).animate(
+      CurvedAnimation(
         parent: _scaleAnimationController,
-        curve: Curves.easeOutExpo)); // todo: constant
+        curve: Curves.easeOutExpo,
+      ),
+    ); // todo: constant
     _scaleAnimationController
       ..duration = const Duration(milliseconds: 8350)
       ..value = 0.0;

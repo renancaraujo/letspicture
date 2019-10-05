@@ -29,7 +29,10 @@ class Editor {
     final width = imageSize.width;
     final height = imageSize.height;
 
-    final Niks skin = Niks.blank(NiksOptions(width: width, height: height));
+    final Niks skin = Niks.blank(NiksOptions(
+      width: width,
+      height: height,
+    ));
     skin.installLayer(BitmapLayerInstallation());
     final BitmapLayer imageLayer = BitmapLayer.fromLTWH(
       Bitmap.blank(1, 1),

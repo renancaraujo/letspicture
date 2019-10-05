@@ -340,10 +340,14 @@ class _MenuIconsRowState extends State<MenuIconsRow>
         ignoring: !hasPicked,
         child: AnimatedContainer(
           transform: Matrix4.translationValues(
-              0, hasPicked ? 0.0 : 100.0, 0), // todo: constant
+            0,
+            hasPicked ? 0.0 : 100.0,
+            0,
+          ), // todo: constant
           duration: const Duration(milliseconds: duration), // todo: constant
           decoration: BoxDecoration(
-              color: Colors.blueAccent.withAlpha(1)), // todo: constant
+            color: Colors.blueAccent.withAlpha(1),
+          ), // todo: constant
           curve: Curves.easeOutExpo, // todo: constant
           child: AnimatedOpacity(
             opacity: hasPicked ? 1 : 0, // todo: constant
@@ -351,7 +355,10 @@ class _MenuIconsRowState extends State<MenuIconsRow>
                 ? const Duration(milliseconds: duration)
                 : const Duration(milliseconds: 100), // todo: constant
             child: hasPicked && widget.isReady
-                ? OptionEditor(option: pickedItem, onBack: onUnpick)
+                ? OptionEditor(
+                    option: pickedItem,
+                    onBack: onUnpick,
+                  )
                 : Container(),
           ),
         ),
