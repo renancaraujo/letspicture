@@ -197,7 +197,7 @@ class _MenuIconsRowState extends State<MenuIconsRow>
 
   Animation<double> _animationTranslation;
 
-  AdjustmentsMenuItem pickedItem;
+  AdjustmentsMenuItemWidget pickedItem;
 
   @override
   void initState() {
@@ -233,7 +233,7 @@ class _MenuIconsRowState extends State<MenuIconsRow>
     _animationTranslation = Tween(begin: 20.0, end: 0.0).animate(curve);
   }
 
-  void onPick(AdjustmentsMenuItem option) {
+  void onPick(AdjustmentsMenuItemWidget option) {
     if (option == pickedItem) {
       onUnpick();
     } else {
@@ -373,8 +373,8 @@ class _MenuIconsRowState extends State<MenuIconsRow>
 class _MenuIconItem extends StatelessWidget {
   _MenuIconItem(this.item, this.onPick) : super();
 
-  final AdjustmentsMenuItem item;
-  final ValueChanged<AdjustmentsMenuItem> onPick;
+  final AdjustmentsMenuItemWidget item;
+  final ValueChanged<AdjustmentsMenuItemWidget> onPick;
 
   void onTap() => onPick(item);
 

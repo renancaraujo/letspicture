@@ -5,17 +5,18 @@ import '../../editor.dart';
 import '../adjustments_items.dart';
 import 'saturation_subject.dart';
 
-class SaturationMenuItem extends AdjustmentsMenuItem {
+class SaturationMenuItem extends AdjustmentsMenuItemWidget {
   SaturationMenuItem()
       : super(
-            "Saturation",
-            Image.asset(
-              "assets/icons/editor/saturation.png",
-              width: iconWidth,
-            ));
+          "Saturation",
+          Image.asset(
+            "assets/icons/editor/saturation.png",
+            width: iconWidth,
+          ),
+        );
 
   @override
-  Widget itemBuilder(BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: SaturationItemEditor(),
     );
@@ -37,7 +38,7 @@ class _SaturationItemEditorState extends State<SaturationItemEditor> {
     super.initState();
 
     subjectManager = SaturationSubjectManager();
-    subjectManager.add(subjectManager.convertToIn(filter.saturation));
+    subjectManager.sink(subjectManager.convertToIn(filter.saturation));
 
     subjectManager.outcomes.listen(onData);
   }
@@ -53,7 +54,7 @@ class _SaturationItemEditorState extends State<SaturationItemEditor> {
   }
 
   void onChanged(double value) {
-    subjectManager.add(value);
+    subjectManager.sink(value);
   }
 
   @override

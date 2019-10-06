@@ -42,7 +42,7 @@ packages:
       name: bitmap
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.4-next4"
+    version: "0.0.5"
   boolean_selector:
     dependency: transitive
     description:
@@ -353,7 +353,7 @@ packages:
       name: niks_bitmap
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.2-next4"
+    version: "0.0.3"
   package_config:
     dependency: transitive
     description:

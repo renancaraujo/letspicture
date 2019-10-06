@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.2.0] - Performance improvements
 
-* TODO: Describe initial release.
+Some performance issues were resolved.

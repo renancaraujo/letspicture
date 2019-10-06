@@ -5,7 +5,7 @@ import '../../editor.dart';
 import '../adjustments_items.dart';
 import 'whites_subject.dart';
 
-class WhitesMenuItem extends AdjustmentsMenuItem {
+class WhitesMenuItem extends AdjustmentsMenuItemWidget {
   WhitesMenuItem()
       : super(
             "Whites",
@@ -15,7 +15,7 @@ class WhitesMenuItem extends AdjustmentsMenuItem {
             ));
 
   @override
-  Widget itemBuilder(BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: WhitesItemEditor(),
     );
@@ -37,7 +37,7 @@ class _WhitesItemEditorState extends State<WhitesItemEditor> {
     super.initState();
 
     subjectManager = WhitesSubjectManager();
-    subjectManager.add(subjectManager.convertToIn(filter.whites));
+    subjectManager.sink(subjectManager.convertToIn(filter.whites));
 
     subjectManager.outcomes.listen(onData);
   }
@@ -53,7 +53,7 @@ class _WhitesItemEditorState extends State<WhitesItemEditor> {
   }
 
   void onChanged(double value) {
-    subjectManager.add(value);
+    subjectManager.sink(value);
   }
 
   @override

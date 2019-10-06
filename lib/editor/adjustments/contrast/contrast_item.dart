@@ -5,27 +5,30 @@ import '../../editor.dart';
 import '../adjustments_items.dart';
 import 'contrast_subject.dart';
 
-class ContrastMenuItem extends AdjustmentsMenuItem {
-  ContrastMenuItem()
+class ContrastAdjustmentMenuItem extends AdjustmentsMenuItemWidget {
+  ContrastAdjustmentMenuItem()
       : super(
           "Contrast",
-          Image.asset("assets/icons/editor/contrast.png", width: iconWidth),
+          Image.asset(
+            "assets/icons/editor/contrast.png",
+            width: iconWidth,
+          ),
         );
 
   @override
-  Widget itemBuilder(BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
-      child: ContrastItemEditor(),
+      child: ContrastSlider(),
     );
   }
 }
 
-class ContrastItemEditor extends StatefulWidget {
+class ContrastSlider extends StatefulWidget {
   @override
-  _ContrastItemEditorState createState() => _ContrastItemEditorState();
+  _ContrastSliderState createState() => _ContrastSliderState();
 }
 
-class _ContrastItemEditorState extends State<ContrastItemEditor> {
+class _ContrastSliderState extends State<ContrastSlider> {
   ContrastSubjectManager subjectManager;
 
   ContrastFilter get filter => Editor.instance.contrastFilter;
@@ -35,7 +38,7 @@ class _ContrastItemEditorState extends State<ContrastItemEditor> {
     super.initState();
 
     subjectManager = ContrastSubjectManager();
-    subjectManager.add(subjectManager.convertToIn(filter.contrastRate));
+    subjectManager.sink(subjectManager.convertToIn(filter.contrastRate));
 
     subjectManager.outcomes.listen(onData);
   }
@@ -51,7 +54,7 @@ class _ContrastItemEditorState extends State<ContrastItemEditor> {
   }
 
   void onChanged(double value) {
-    subjectManager.add(value);
+    subjectManager.sink(value);
   }
 
   @override

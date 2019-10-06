@@ -5,7 +5,7 @@ import '../../editor.dart';
 import '../adjustments_items.dart';
 import 'blacks_subject.dart';
 
-class BlacksMenuItem extends AdjustmentsMenuItem {
+class BlacksMenuItem extends AdjustmentsMenuItemWidget {
   BlacksMenuItem()
       : super(
             "Blacks",
@@ -15,7 +15,7 @@ class BlacksMenuItem extends AdjustmentsMenuItem {
             ));
 
   @override
-  Widget itemBuilder(BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: BlacksItemEditor(),
     );
@@ -37,7 +37,7 @@ class _BlacksItemEditorState extends State<BlacksItemEditor> {
     super.initState();
 
     subjectManager = BlacksSubjectManager();
-    subjectManager.add(subjectManager.convertToIn(filter.blacks));
+    subjectManager.sink(subjectManager.convertToIn(filter.blacks));
 
     subjectManager.outcomes.listen(onData);
   }
@@ -53,7 +53,7 @@ class _BlacksItemEditorState extends State<BlacksItemEditor> {
   }
 
   void onChanged(double value) {
-    subjectManager.add(value);
+    subjectManager.sink(value);
   }
 
   @override

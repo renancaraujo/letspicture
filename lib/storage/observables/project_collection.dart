@@ -56,9 +56,10 @@ abstract class __ProjectCollectionObservable with Store {
 
   @action
   void insertProject(Project project) {
-    print("salvando projeto ${project.originalBitmapFile == null}");
     projects.putIfAbsent(
-        project.id, () => ProjectObservable.fromProject(project));
+      project.id,
+      () => ProjectObservable.fromProject(project),
+    );
   }
 
   @action

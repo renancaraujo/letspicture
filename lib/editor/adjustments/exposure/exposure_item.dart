@@ -5,7 +5,7 @@ import '../../editor.dart';
 import '../adjustments_items.dart';
 import 'exposure_subject.dart';
 
-class ExposureMenuItem extends AdjustmentsMenuItem {
+class ExposureMenuItem extends AdjustmentsMenuItemWidget {
   ExposureMenuItem()
       : super(
             "Exposure",
@@ -15,7 +15,7 @@ class ExposureMenuItem extends AdjustmentsMenuItem {
             ));
 
   @override
-  Widget itemBuilder(BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: ExposureItemEditor(),
     );
@@ -37,7 +37,7 @@ class _ExposureItemEditorState extends State<ExposureItemEditor> {
     super.initState();
 
     subjectManager = ExposureSubjectManager();
-    subjectManager.add(subjectManager.convertToIn(filter.exposure));
+    subjectManager.sink(subjectManager.convertToIn(filter.exposure));
 
     subjectManager.outcomes.listen(onData);
   }
@@ -53,7 +53,7 @@ class _ExposureItemEditorState extends State<ExposureItemEditor> {
   }
 
   void onChanged(double value) {
-    subjectManager.add(value);
+    subjectManager.sink(value);
   }
 
   @override

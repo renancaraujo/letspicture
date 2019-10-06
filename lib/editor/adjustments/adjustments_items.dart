@@ -12,22 +12,23 @@ typedef MenuOptionBuilder = Widget Function(BuildContext context);
 
 const double iconWidth = 25;
 
-final List<AdjustmentsMenuItem> adjustmentsMenuItems = <AdjustmentsMenuItem>[
-  ContrastMenuItem(),
+final List<AdjustmentsMenuItemWidget> adjustmentsMenuItems =
+    <AdjustmentsMenuItemWidget>[
+  ContrastAdjustmentMenuItem(),
   BrightnessMenuItem(),
   SaturationMenuItem(),
+  ExposureMenuItem(),
   BlacksMenuItem(),
   WhitesMenuItem(),
-  ExposureMenuItem(),
 ];
 
-abstract class AdjustmentsMenuItem {
-  AdjustmentsMenuItem(this.title, this.icon);
+abstract class AdjustmentsMenuItemWidget {
+  AdjustmentsMenuItemWidget(this.title, this.icon);
 
   final String title;
   final Image icon;
 
-  Widget itemBuilder(BuildContext context);
+  Widget build(BuildContext context);
 }
 
 class OptionEditor extends StatelessWidget {
@@ -36,7 +37,7 @@ class OptionEditor extends StatelessWidget {
         assert(onBack != null),
         super(key: key);
 
-  final AdjustmentsMenuItem option;
+  final AdjustmentsMenuItemWidget option;
   final VoidCallback onBack;
 
   @override
@@ -75,7 +76,7 @@ class OptionEditor extends StatelessWidget {
               child: SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                     activeTrackColor: Colors.white, thumbColor: Colors.white),
-                child: option.itemBuilder(context),
+                child: option.build(context),
               ),
             ),
           ],
@@ -86,7 +87,7 @@ class OptionEditor extends StatelessWidget {
 abstract class ItemSubjectManager<InType, OutType> {
   ItemSubjectManager() : subject = BehaviorSubject<InType>() {
     outcomes = subject
-        .throttleTime(const Duration(milliseconds: 100), trailing: true)
+        .throttleTime(const Duration(milliseconds: 60), trailing: true)
         .map<OutType>(convertToOut);
     subject.listen((InType newValue) => value = newValue);
   }
@@ -99,7 +100,7 @@ abstract class ItemSubjectManager<InType, OutType> {
     subject.close();
   }
 
-  void add(InType event) {
+  void sink(InType event) {
     subject.add(event);
   }
 

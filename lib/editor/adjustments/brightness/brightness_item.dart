@@ -5,7 +5,7 @@ import '../../editor.dart';
 import '../adjustments_items.dart';
 import 'brightness_subject.dart';
 
-class BrightnessMenuItem extends AdjustmentsMenuItem {
+class BrightnessMenuItem extends AdjustmentsMenuItemWidget {
   BrightnessMenuItem()
       : super(
             "Brightness",
@@ -13,7 +13,7 @@ class BrightnessMenuItem extends AdjustmentsMenuItem {
                 width: iconWidth));
 
   @override
-  Widget itemBuilder(BuildContext context) {
+  Widget build(BuildContext context) {
     return Container(
       child: BrightnessItemEditor(),
     );
@@ -35,7 +35,7 @@ class _BrightnessItemEditorState extends State<BrightnessItemEditor> {
     super.initState();
 
     subjectManager = BrightnessSubjectManager();
-    subjectManager.add(subjectManager.convertToIn(filter.brightnessRate));
+    subjectManager.sink(subjectManager.convertToIn(filter.brightnessRate));
 
     subjectManager.outcomes.listen(onData);
   }
@@ -51,7 +51,7 @@ class _BrightnessItemEditorState extends State<BrightnessItemEditor> {
   }
 
   void onChanged(double value) {
-    subjectManager.add(value);
+    subjectManager.sink(value);
   }
 
   @override
